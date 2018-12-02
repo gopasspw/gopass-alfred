@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>pw.gopass.alfred</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>0D5132AE-3620-4D5F-BA72-EFD481455463</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>copy username</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Martin Hoefling</string>
+	<key>description</key>
+	<string>Gopass password access</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>gopass</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>export PATH=/usr/local/bin:$PATH
+
+if [ -f ~/.gpg-agent-info ] &amp;&amp; [ -n "$(pgrep gpg-agent)" ]; then
+	source ~/.gpg-agent-info
+	export GPG_AGENT_INFO
+else
+	eval $(gpg-agent --daemon)
+fi
+
+export GPG_TTY="$(tty)"
+
+/usr/local/bin/gopass -c "{query}"
+
+RESULT=$?
+
+osascript -e 'display notification "Copied password for {query} to clipboard" with title "Gopass"'
+
+exit $RESULT</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>70</integer>
+				<key>keyword</key>
+				<string>gp</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>loading gopass secrets</string>
+				<key>script</key>
+				<string>/usr/local/bin/gopass list -f &gt; /tmp/all
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>gopass_filter.py</string>
+				<key>subtext</key>
+				<string>secret</string>
+				<key>title</key>
+				<string>Passwords from gopass</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0D5132AE-3620-4D5F-BA72-EFD481455463</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>USER=$(./get_password.py {query} username)
+osascript -e 'display notification "Copied username '$USER'" with title "Gopass"'
+echo $USER | pbcopy</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>0D5132AE-3620-4D5F-BA72-EFD481455463</key>
+		<dict>
+			<key>xpos</key>
+			<integer>80</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://www.gopass.pw</string>
+</dict>
+</plist>
