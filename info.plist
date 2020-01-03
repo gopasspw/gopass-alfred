@@ -33,6 +33,19 @@
 		</array>
 		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
 		<array/>
+		<key>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E02BC497-4714-4F9A-99EF-2AE880C7A8BA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Martin Hoefling</string>
@@ -44,6 +57,23 @@
 	<string>gopass</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E02BC497-4714-4F9A-99EF-2AE880C7A8BA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -63,7 +93,7 @@ fi
 
 export GPG_TTY="$(tty)"
 
-/usr/local/bin/gopass -c "{query}"
+/usr/local/bin/gopass "{query}"
 
 RESULT=$?
 
@@ -180,6 +210,13 @@ echo $USER | pbcopy</string>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>E02BC497-4714-4F9A-99EF-2AE880C7A8BA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>410</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
