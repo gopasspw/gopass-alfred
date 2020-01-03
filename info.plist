@@ -31,6 +31,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3DCB7A4E-01D2-4D95-BBB2-8933CA030F88</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DACF225A-A25D-45F6-B4E3-58E1AB26C012</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
 		<array/>
 		<key>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</key>
@@ -38,6 +51,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>E02BC497-4714-4F9A-99EF-2AE880C7A8BA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E02BC497-4714-4F9A-99EF-2AE880C7A8BA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3DCB7A4E-01D2-4D95-BBB2-8933CA030F88</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -57,6 +83,29 @@
 	<string>gopass</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>echo -n '' | pbcopy</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DACF225A-A25D-45F6-B4E3-58E1AB26C012</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -165,6 +214,19 @@ exit $RESULT</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>seconds</key>
+				<string>45</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.delay</string>
+			<key>uid</key>
+			<string>3DCB7A4E-01D2-4D95-BBB2-8933CA030F88</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -199,12 +261,26 @@ echo $USER | pbcopy</string>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>3DCB7A4E-01D2-4D95-BBB2-8933CA030F88</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
 			<integer>160</integer>
+		</dict>
+		<key>DACF225A-A25D-45F6-B4E3-58E1AB26C012</key>
+		<dict>
+			<key>xpos</key>
+			<integer>660</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>DB6BF0F4-4C45-43AF-9889-5E5E6CD8048F</key>
 		<dict>
