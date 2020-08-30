@@ -22,7 +22,7 @@ outlist = [
         "title": result.split('/')[-1],
         "subtitle": '/'.join(result.split('/')[:-1]),
         "arg": result,
-        "match": " ".join(set(re.split('[. /\-]', result))) + ' ' + result,
+        "match": " ".join(set(re.split('[. /\-_]', result))) + ' ' + " ".join(set(re.split('[/]', result))) + ' ' + result,
         "autocomplete": result
     } for result in stdout.decode('ascii').splitlines()
 ]
