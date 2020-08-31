@@ -33,8 +33,9 @@ def parse_gopass_data(data):
     lines = data.split("\n")
     password = lines[0]
     non_empty_lines = list(filter(lambda line: len(line) > 0, lines))
-    lines_splitted = map(lambda line: line.split(": "), non_empty_lines[2:])
-    items_dict = {item[0]: item[1] for item in lines_splitted}
+    lines_splitted = map(lambda line: line.split(": "), non_empty_lines[1:])
+    lines_with_two_items = filter(lambda elements: len(elements) == 2, lines_splitted)
+    items_dict = {item[0]: item[1] for item in lines_with_two_items}
     items_dict["pass"] = password
     return items_dict
 
