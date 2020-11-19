@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
+import json
 import os
 import subprocess
 import sys
-import json
 import time
+from os.path import expanduser
 
+home = expanduser("~")
 my_env = os.environ.copy()
 my_env['PATH'] = '/usr/local/bin:{}'.format(my_env['PATH'])
 
@@ -16,6 +18,31 @@ special_autotype_handlers = {
     ":delay": lambda: time.sleep(1)
 }
 
+def get_additional_autotype_handlers_filename():
+    base_path = os.getenv("XDG_CONFIG", home)
+    return '{base_path}/{filename}'.format(base_path = base_path, filename = ".gopass_autotype_handlers.json")
+
+def load_additional_autotype_handlers_config():
+    handlers_path = get_additional_autotype_handlers_filename()
+    if os.path.exists(handlers_path):
+        with open(handlers_path) as f:
+            return json.load(f)
+    else:
+        return {}
+
+def execute_additional_autotype_handler(command):
+    command_result = os.popen(command).read()
+    print(command + " > " + str(command_result))
+    do_type(command_result)
+
+def load_additional_autotype_handlers():
+    config = load_additional_autotype_handlers_config()
+    return {k: lambda: execute_additional_autotype_handler(v) for k, v in config.items()}
+
+
+def all_autotype_handlers():
+    additional = load_additional_autotype_handlers()
+    return {**additional, **special_autotype_handlers}
 
 def do_type(to_type):
     os.system(f"echo 'tell application \"System Events\" to keystroke \"{to_type}\"' | osascript")
@@ -42,11 +69,12 @@ def parse_gopass_data(data):
 
 def autotype(items, field):
     autotype = items.get(field)
+    handlers = all_autotype_handlers()
     if autotype is None:
         return
     to_type = autotype.split(" ")
     for word in to_type:
-        handler = special_autotype_handlers.get(word)
+        handler = handlers.get(word)
         if handler is None:
             mapped = items.get(word)
             do_type(word if mapped is None else mapped)
