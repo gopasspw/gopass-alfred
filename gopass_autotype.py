@@ -15,12 +15,16 @@ special_autotype_handlers = {
     ":tab": lambda: do_stroke(48),
     ":space": lambda: do_stroke(49),
     ":enter": lambda: do_stroke(36),
-    ":delay": lambda: time.sleep(1)
+    ":delete": lambda: do_stroke(51),
+    ":delay": lambda: time.sleep(1),
+    ":clearField": lambda: clear_field_content()
 }
+
 
 def get_additional_autotype_handlers_filename():
     base_path = os.getenv("XDG_CONFIG", home)
-    return '{base_path}/{filename}'.format(base_path = base_path, filename = ".gopass_autotype_handlers.json")
+    return '{base_path}/{filename}'.format(base_path=base_path, filename=".gopass_autotype_handlers.json")
+
 
 def load_additional_autotype_handlers_config():
     handlers_path = get_additional_autotype_handlers_filename()
@@ -30,19 +34,21 @@ def load_additional_autotype_handlers_config():
     else:
         return {}
 
+
 def execute_additional_autotype_handler(command):
     command_result = os.popen(command).read()
-    print(command + " > " + str(command_result))
     do_type(command_result)
+
 
 def load_additional_autotype_handlers():
     config = load_additional_autotype_handlers_config()
-    return {k: lambda: execute_additional_autotype_handler(v) for k, v in config.items()}
+    return dict(map(lambda item: (item[0], lambda: execute_additional_autotype_handler(item[1])), config.items()))
 
 
 def all_autotype_handlers():
     additional = load_additional_autotype_handlers()
     return {**additional, **special_autotype_handlers}
+
 
 def do_type(to_type):
     os.system(f"echo 'tell application \"System Events\" to keystroke \"{to_type}\"' | osascript")
@@ -50,6 +56,11 @@ def do_type(to_type):
 
 def do_stroke(stroke):
     os.system(f"echo 'tell application \"System Events\" to key code \"{stroke}\"' | osascript")
+
+
+def clear_field_content():
+    os.system("""echo 'tell application "System Events" to keystroke "a" using command down' | osascript""")
+    do_stroke(51)
 
 
 def get_gopass_data_for(query):
