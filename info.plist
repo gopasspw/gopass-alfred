@@ -4,8 +4,6 @@
 <dict>
 	<key>bundleid</key>
 	<string>pw.gopass.alfred</string>
-	<key>category</key>
-	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>0D5132AE-3620-4D5F-BA72-EFD481455463</key>
@@ -27,6 +25,45 @@
 				<integer>131072</integer>
 				<key>modifiersubtext</key>
 				<string>copy username</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>1191CB7E-4E88-4BFB-BED0-579A0E6124C8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7B342C01-E6A7-4B26-A83E-D593DA90F4E1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2E65F512-65E5-47AD-83AD-EFBB0A988B69</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1191CB7E-4E88-4BFB-BED0-579A0E6124C8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>437FA632-22A0-4FA7-9B33-E0CFAFE9E61A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FB6C8961-5CC1-464F-AEF7-A9BCF53F228F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -91,6 +128,8 @@ exit $RESULT</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -130,7 +169,7 @@ exit $RESULT</string>
 			<key>uid</key>
 			<string>0D5132AE-3620-4D5F-BA72-EFD481455463</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -157,6 +196,201 @@ echo $USER | pbcopy</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>70</integer>
+				<key>keyword</key>
+				<string>gpa</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>loading gopass secrets</string>
+				<key>script</key>
+				<string>/usr/local/bin/gopass list -f &gt; /tmp/all
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>gopass_filter.py</string>
+				<key>subtext</key>
+				<string>secret</string>
+				<key>title</key>
+				<string>Gopass autotype</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>437FA632-22A0-4FA7-9B33-E0CFAFE9E61A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./gopass_autotype.py autotype "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FB6C8961-5CC1-464F-AEF7-A9BCF53F228F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>70</integer>
+				<key>keyword</key>
+				<string>gpf</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>loading gopass secrets</string>
+				<key>script</key>
+				<string>/usr/local/bin/gopass list -f &gt; /tmp/all
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>gopass_filter.py</string>
+				<key>subtext</key>
+				<string>secret</string>
+				<key>title</key>
+				<string>gopass type field</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>2E65F512-65E5-47AD-83AD-EFBB0A988B69</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>./gopass_autotype.py autotype "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7B342C01-E6A7-4B26-A83E-D593DA90F4E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>list for key</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./gopass_autotype.py list "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1191CB7E-4E88-4BFB-BED0-579A0E6124C8</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -168,6 +402,34 @@ echo $USER | pbcopy</string>
 			<integer>80</integer>
 			<key>ypos</key>
 			<integer>20</integer>
+		</dict>
+		<key>1191CB7E-4E88-4BFB-BED0-579A0E6124C8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>255</integer>
+			<key>ypos</key>
+			<integer>465</integer>
+		</dict>
+		<key>2E65F512-65E5-47AD-83AD-EFBB0A988B69</key>
+		<dict>
+			<key>xpos</key>
+			<integer>85</integer>
+			<key>ypos</key>
+			<integer>465</integer>
+		</dict>
+		<key>437FA632-22A0-4FA7-9B33-E0CFAFE9E61A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>90</integer>
+			<key>ypos</key>
+			<integer>330</integer>
+		</dict>
+		<key>7B342C01-E6A7-4B26-A83E-D593DA90F4E1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>465</integer>
 		</dict>
 		<key>B1FF35DC-433E-4CCC-9CB3-7C8E1BC532F7</key>
 		<dict>
@@ -183,7 +445,18 @@ echo $USER | pbcopy</string>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>FB6C8961-5CC1-464F-AEF7-A9BCF53F228F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>330</integer>
+		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string></string>
 	<key>webaddress</key>
 	<string>https://www.gopass.pw</string>
 </dict>
